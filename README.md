@@ -1,6 +1,6 @@
 # DeepFake Detection
 
-In this repository, we train a deep learning model on fake and real videos
+In this repository, we train a deep learning model on fake and real videos. Create ```conda``` environment using  ```environment.yml```
 
 ## Training
 

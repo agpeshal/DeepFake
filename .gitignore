@@ -1,0 +1,8 @@
+*.pyc
+*.txt
+videos/
+mlruns/
+images/
+log/
+*.vscode
+*.sh

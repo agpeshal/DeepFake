@@ -4,9 +4,11 @@ In this repository, we train a deep learning model on fake and real videos. Crea
 
 ## Training
 
-We deploy [Xception Net](https://arxiv.org/abs/1610.02357) since it is proven to work well for lot of DeepFake tasks. Since we have a relatively small dataset to train, we make use of pre-trained model extracted from [this link](http://kaldir.vc.in.tum.de/FaceForensics/models/faceforensics++_models.zip). We also make use of some of the functions and network definition from [faceforensics](https://github.com/agpeshal/FaceForensics/tree/master/classification).
+We deploy [Xception Net](https://arxiv.org/abs/1610.02357) since it is proven to work well for lot of DeepFake tasks. Since we have a relatively small dataset to train, we make use of pre-trained model extracted from [this link](http://kaldir.vc.in.tum.de/FaceForensics/models/faceforensics++_models.zip). We also make use of some of the functions and network definition from [faceforensics](https://github.com/agpeshal/FaceForensics/tree/master/classification). The networks has about 20 M parameters but we set only about 4 M to be trainable.
 
 This is to capture faces from video frames and use those images to learn. The prediction is based on the average prediction on the faces of the video frames
+
+### Preprocessing
 
 First to extract images from videos run the following command. Ensure that fake videos are in ```vidoes/fake``` and real under ```videos/real``` with ```.mp4``` file format.
 
@@ -25,13 +27,13 @@ python data_dir.py
 To start the training and validation process, run
 
 ```bash
-python train.py
+python train.py --threshold 0.5
 mlflow ui
 ```
 
 You can monitor training with *mlflow* at http://localhost:5000
 
-
+This leads to an accuracy of 65% on our test split but may improve on changing the threshold value which decides the final prediction based on the average prediction on the image frames. Potential overfitting can be avoided by extracting more images per video during preprocessing
 
 # Inference
 
